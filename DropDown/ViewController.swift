@@ -10,11 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var titleStackView: UIStackView!
+    @IBOutlet weak var descriptionStackview: UIStackView!
+    @IBOutlet weak var dropDownButton: UIButton!
+    var showDescription = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        dropDownButton.isHidden = false
     }
 
+    @IBAction func dropDownTapped(_ sender: UIButton) {
+        showDescription = !showDescription
 
+        UIView.animate(withDuration: 0.3) {
+            self.descriptionStackview.isHidden = !self.showDescription
+            self.dropDownButton.setImage(UIImage(named: !self.showDescription ? "dropdown" : "dropup"), for: .normal)
+        }
+    }
 }
 
